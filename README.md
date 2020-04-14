@@ -1,5 +1,5 @@
 # Champion Statistics Crawler
-A note to build a crawler to scrape heros statistics data in LOL.
+A note to build a crawler to scrape heros statistics data from [here](https://champion.gg/).
 
 ## Import packages
 ```python
