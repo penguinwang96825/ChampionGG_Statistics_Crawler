@@ -2,6 +2,8 @@
 A note to build a crawler to scrape heros statistics data from [here](https://champion.gg/).
 
 ## Import packages
+Import the packages I need.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -12,6 +14,8 @@ from tqdm.notebook import tqdm
 ```
 ## Main Code
 ### Get all URLs
+Use `get_heros_urls()` function to extract all the urls, and store it into a list. 
+
 ```python
 def get_heros_urls():  
     # Create an empty list to store heros statistics data
@@ -48,6 +52,8 @@ def get_heros_urls():
 ```
 
 ### Get statistics data
+Get statistics data of the heros and return a list.
+
 ```python
 def get_heros_statistics(url):
     # Get hero name and lane from string of url
@@ -91,6 +97,8 @@ def get_heros_statistics(url):
 ```
 
 ### Get heros statistics dataframe
+Feed in the list into `get_heros_dataframe()` function and return 3 dataframes, namely `df_complete`, `df_average`, `df_rp`.
+
 ```python
 def get_heros_dataframe():
     stat = []
