@@ -13,7 +13,7 @@ from tqdm.notebook import tqdm
 ## Main Code
 ### Get all URLs
 ```python
-def get_lol_heros_urls():
+def get_heros_urls():
     hero_summary = []
     # Get html by using requests
     url = "https://champion.gg/"
@@ -27,7 +27,9 @@ def get_lol_heros_urls():
         s = []
         name = hero.find(name="span", attrs={"class": "champion-name"}).string
         name = name.split("&")[0]
-        s.append(name.replace(" ", "").replace(".", ""))
+        # 3 counterexamples: (Nunu & Willump, Jungle), (Dr. Mundo, Top), (Dr. Mundo, Jungle)
+        name = name.replace(" ", "").replace(".", "")
+        s.append(name) 
         # Get lane of the hero
         for lane in hero.find_all(name="a")[1:]:
             l = lane.string
@@ -45,7 +47,7 @@ def get_lol_heros_urls():
 
 ### Get statistics data
 ```python
-def get_statistics(url):
+def get_heros_statistics(url):
     hero_name = url.split("/")[-2]
     lane = url.split("/")[-1]
     hero_stat = []
@@ -86,11 +88,11 @@ def get_statistics(url):
 
 ### Get heros statistics dataframe
 ```python
-def get_hero_dataframe():
+def get_heros_dataframe():
     stat = []
-    urls = get_lol_heros_urls()
+    urls = get_heros_urls()
     for url in tqdm(urls):
-        hero_stat = get_statistics(url)
+        hero_stat = get_heros_statistics(url)
         stat.append(hero_stat)
         df = pd.DataFrame(stat)
     df.columns = ["hero", "lane", 
