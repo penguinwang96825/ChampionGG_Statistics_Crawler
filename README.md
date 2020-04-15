@@ -13,7 +13,8 @@ from tqdm.notebook import tqdm
 ## Main Code
 ### Get all URLs
 ```python
-def get_heros_urls():
+def get_heros_urls():  
+    # Create an empty list to store heros statistics data
     hero_summary = []
     # Get html by using requests
     url = "https://champion.gg/"
@@ -22,20 +23,21 @@ def get_heros_urls():
     soup = BeautifulSoup(r, "html.parser")
     # Find the heros information
     table = soup.find(name="div", attrs={"class": "col-md-9 clearfix"})
-    for hero in table.find_all(name="div", attrs={"class": "champ-height"}):
-        # Get hero name
+    for hero in table.find_all(name="div", attrs={"class": "champ-height"}):  
+        # Create an empty list to get hero name temporaryly
         s = []
         name = hero.find(name="span", attrs={"class": "champion-name"}).string
-        name = name.split("&")[0]
         # 3 counterexamples: (Nunu & Willump, Jungle), (Dr. Mundo, Top), (Dr. Mundo, Jungle)
+        name = name.split("&")[0]
         name = name.replace(" ", "").replace(".", "")
-        s.append(name) 
+        s.append(name)
         # Get lane of the hero
         for lane in hero.find_all(name="a")[1:]:
             l = lane.string
             l = l.replace(" ", "").replace("\n", "")
             s.append(l)
         hero_summary.append(s)
+    # Create an empty list to store url
     urls = []
     basic_url = "https://champion.gg/champion/"
     for i in range(len(hero_summary)):
@@ -48,6 +50,7 @@ def get_heros_urls():
 ### Get statistics data
 ```python
 def get_heros_statistics(url):
+    # Get hero name and lane from string of url
     hero_name = url.split("/")[-2]
     lane = url.split("/")[-1]
     hero_stat = []
@@ -76,7 +79,8 @@ def get_heros_statistics(url):
                 role_placement_2nd = str(role_placement_2cd).replace(" ", "").replace("/", "")
             role_placement = role_placement_1st + "/" + role_placement_2cd
             hero_stat.append(role_placement)
-
+        
+        # Find overall placement ratio
         tr = tbody.find_all(name="tr")
         overall_placement_1st = tr[-1].find(name="strong").string.replace(" ", "").replace("\n", "")
         overall_placement_2nd = tr[-1].find(name="small").string.replace(" ", "").replace("/", "")
