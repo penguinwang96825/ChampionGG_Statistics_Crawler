@@ -95,10 +95,13 @@ def get_heros_statistics(url):
 def get_heros_dataframe():
     stat = []
     urls = get_heros_urls()
+    
     for url in tqdm(urls):
         hero_stat = get_heros_statistics(url)
         stat.append(hero_stat)
         df_complete = pd.DataFrame(stat)
+    
+    # Set columns names
     df_complete.columns = ["hero", "lane", 
         "win_rate_average", "win_rate_rp", 
         "play_rate_average", "play_rate_rp", 
@@ -113,8 +116,12 @@ def get_heros_dataframe():
         "minions_killed_average", "minions_killed_rp", 
         "overall_placement_rp"]
 
+    # Get only average dataframe or role placement dataframe
     df_average = df_complete.iloc[:, [0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22]]
     df_rp = df_complete.iloc[:, [0, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 24]]
+    
     return df_complete, df_average, df_rp
+    
+df_complete, df_average, df_rp = get_heros_dataframe()
 ```
 
