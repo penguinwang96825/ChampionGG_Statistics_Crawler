@@ -76,8 +76,8 @@ def get_heros_statistics(url):
                 role_placement_1st = str(role_placement_1st).replace(" ", "").replace("\n", "")
             if tds[2].find(name="small") is not None: 
                 role_placement_2nd = tds[2].find(name="small").string
-                role_placement_2nd = str(role_placement_2cd).replace(" ", "").replace("/", "")
-            role_placement = role_placement_1st + "/" + role_placement_2cd
+                role_placement_2nd = str(role_placement_2nd).replace(" ", "").replace("/", "")
+            role_placement = role_placement_1st + "/" + role_placement_2nd
             hero_stat.append(role_placement)
         
         # Find overall placement ratio
