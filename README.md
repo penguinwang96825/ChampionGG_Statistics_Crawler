@@ -98,20 +98,23 @@ def get_heros_dataframe():
     for url in tqdm(urls):
         hero_stat = get_heros_statistics(url)
         stat.append(hero_stat)
-        df = pd.DataFrame(stat)
-    df.columns = ["hero", "lane", 
-       "win_rate_average", "win_rate_rp", 
-       "play_rate_average", "play_rate_rp", 
-       "ban_rate_average", "ban_rate_rp", 
-       "player_base_average_games_played_average", "player_base_average_games_played_rp", 
-       "gold_earned_average", "gold_earned_rp", 
-       "kills_average", "kills_rp", 
-       "deaths_average", "death_rp", 
-       "assists_average", "assists_rp", 
-       "damage_dealt_average", "damage_dealt_rp", 
-       "damage_taken_average", "amage_taken_rp", 
-       "minions_killed_average", "minions_killed_rp", 
-       "overall_placement_rp"]
-    return df
+        df_complete = pd.DataFrame(stat)
+    df_complete.columns = ["hero", "lane", 
+        "win_rate_average", "win_rate_rp", 
+        "play_rate_average", "play_rate_rp", 
+        "ban_rate_average", "ban_rate_rp", 
+        "player_base_average_games_played_average", "player_base_average_games_played_rp", 
+        "gold_earned_average", "gold_earned_rp", 
+        "kills_average", "kills_rp", 
+        "deaths_average", "death_rp", 
+        "assists_average", "assists_rp", 
+        "damage_dealt_average", "damage_dealt_rp", 
+        "damage_taken_average", "amage_taken_rp", 
+        "minions_killed_average", "minions_killed_rp", 
+        "overall_placement_rp"]
+
+    df_average = df_complete.iloc[:, [0, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22]]
+    df_rp = df_complete.iloc[:, [0, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 24]]
+    return df_complete, df_average, df_rp
 ```
 
