@@ -125,3 +125,15 @@ def get_heros_dataframe():
 df_complete, df_average, df_rp = get_heros_dataframe()
 ```
 
+## Take a look at dataframe
+```python
+df_average.head()
+```
+
+||hero|lane|win_rate_average|play_rate_average|ban_rate_average|player_base_average_games_played_average|gold_earned_average|kills_average|deaths_average|assists_average|damage_dealt_average|damage_taken_average|minions_killed_average|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|0|Aatrox|Top|47.33%|2.99%|0.59%|5.30|10964|5.16|5.63|5.80|18788|31710|162.03|
+|1|Aatrox|Support|50.77%|0.55%|0.59%|23.03|6384|2.95|3.20|2.09|8706|13312|100.55|
+|2|Ahri|Middle|51.86%|3.12%|0.23%|7.55|11052|6.42|5.24|7.68|20132|18589|159.75|
+|3|Akali|Middle|44.11%|1.66%|0.49%|7.93|10977|7.81|6.23|5.35|18881|24593|149.14|
+|4|Akali|Top|42.98%|0.88%|0.49%|8.23|10949|6.66|5.95|4.74|19045|24903|160.56|
